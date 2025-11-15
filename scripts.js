@@ -144,11 +144,14 @@ function flipCard(card) {
     card.classList.toggle('flipped');
 }
 
-// Projects Slider
+// Projects Slider - Infinite Circular
 let currentSlide = 0;
 let cardsToShow = 3;
-const totalSlides = document.querySelectorAll('.project-card').length;
-let maxSlide = totalSlides - cardsToShow;
+let totalSlides = 0;
+let actualTotalSlides = 0;
+let isTransitioning = false;
+let slider = null;
+let clonedCards = 0;
 
 function getCardsToShow() {
     if (window.innerWidth <= 576) {
@@ -160,23 +163,32 @@ function getCardsToShow() {
     }
 }
 
-function updateCardsToShow() {
-    cardsToShow = getCardsToShow();
-    maxSlide = Math.max(0, totalSlides - cardsToShow);
+function createInfiniteSlider() {
+    slider = document.querySelector('.projects-slider');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    actualTotalSlides = cards.length;
     
-    // Reset to valid position if needed
-    if (currentSlide > maxSlide) {
-        currentSlide = maxSlide;
+    // Clone first few cards and append to end for seamless loop
+    const cardsToClone = Math.min(cardsToShow, actualTotalSlides);
+    clonedCards = cardsToClone;
+    
+    for (let i = 0; i < cardsToClone; i++) {
+        const clone = cards[i].cloneNode(true);
+        clone.classList.add('cloned');
+        slider.appendChild(clone);
     }
+    
+    totalSlides = actualTotalSlides + clonedCards;
 }
 
 function initSlider() {
-    updateCardsToShow();
-    const dotsContainer = document.querySelector('.slider-dots');
-    dotsContainer.innerHTML = ''; // Clear existing dots
+    cardsToShow = getCardsToShow();
     
-    // Create dots based on number of slides needed
-    for (let i = 0; i <= maxSlide; i++) {
+    const dotsContainer = document.querySelector('.slider-dots');
+    dotsContainer.innerHTML = '';
+    
+    // Create dots only for actual slides
+    for (let i = 0; i < actualTotalSlides; i++) {
         const dot = document.createElement('span');
         dot.classList.add('dot');
         if (i === 0) dot.classList.add('active');
@@ -186,44 +198,57 @@ function initSlider() {
 }
 
 function moveSlide(direction) {
+    if (isTransitioning) return;
+    
     currentSlide += direction;
-    
-    if (currentSlide < 0) {
-        currentSlide = 0;
-    } else if (currentSlide > maxSlide) {
-        currentSlide = maxSlide;
-    }
-    
-    updateSlider();
+    updateSlider(true);
 }
 
 function goToSlide(index) {
+    if (isTransitioning) return;
     currentSlide = index;
-    updateSlider();
+    updateSlider(true);
 }
 
-function updateSlider() {
-    const slider = document.querySelector('.projects-slider');
+function updateSlider(withTransition = true) {
+    if (!slider) return;
+    
+    isTransitioning = withTransition;
+    
+    if (withTransition) {
+        slider.style.transition = 'transform 0.5s ease-in-out';
+    } else {
+        slider.style.transition = 'none';
+    }
+    
     const cardWidth = slider.querySelector('.project-card').offsetWidth;
-    const gap = 30; // gap between cards
+    const gap = 30;
     const offset = -(currentSlide * (cardWidth + gap));
     slider.style.transform = `translateX(${offset}px)`;
     
-    // Update dots
+    // Update dots (only for actual slides)
     const dots = document.querySelectorAll('.dot');
+    const activeDotIndex = currentSlide % actualTotalSlides;
     dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+        dot.classList.toggle('active', index === activeDotIndex);
     });
     
-    // Disable buttons at boundaries
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    
-    if (prevBtn && nextBtn) {
-        prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
-        prevBtn.style.cursor = currentSlide === 0 ? 'not-allowed' : 'pointer';
-        nextBtn.style.opacity = currentSlide === maxSlide ? '0.3' : '1';
-        nextBtn.style.cursor = currentSlide === maxSlide ? 'not-allowed' : 'pointer';
+    // Handle infinite loop
+    if (withTransition) {
+        setTimeout(() => {
+            // If we're at or past the cloned cards
+            if (currentSlide >= actualTotalSlides) {
+                currentSlide = 0;
+                updateSlider(false); // Jump to start without animation
+            }
+            // If we're before the first card
+            else if (currentSlide < 0) {
+                currentSlide = actualTotalSlides - 1;
+                updateSlider(false); // Jump to end without animation
+            }
+            
+            isTransitioning = false;
+        }, 500);
     }
 }
 
@@ -232,12 +257,7 @@ let autoPlayInterval;
 
 function startAutoPlay() {
     autoPlayInterval = setInterval(() => {
-        if (currentSlide < maxSlide) {
-            moveSlide(1);
-        } else {
-            currentSlide = -1;
-            moveSlide(1);
-        }
+        moveSlide(1);
     }, 5000);
 }
 
@@ -245,14 +265,17 @@ function stopAutoPlay() {
     clearInterval(autoPlayInterval);
 }
 
-// Initialize slider and start autoplay
+// Initialize slider
 document.addEventListener('DOMContentLoaded', function() {
-    if (totalSlides > 0) {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    if (projectCards.length > 0) {
+        createInfiniteSlider();
         initSlider();
-        updateSlider(); // Initial button state
+        updateSlider(false);
         
-        // Only start autoplay if there are enough cards
-        if (totalSlides > cardsToShow) {
+        // Start autoplay if there are enough cards
+        if (actualTotalSlides > cardsToShow) {
             startAutoPlay();
         }
         
@@ -261,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (sliderContainer) {
             sliderContainer.addEventListener('mouseenter', stopAutoPlay);
             sliderContainer.addEventListener('mouseleave', () => {
-                if (totalSlides > cardsToShow) {
+                if (actualTotalSlides > cardsToShow) {
                     startAutoPlay();
                 }
             });
@@ -271,8 +294,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let touchStartX = 0;
         let touchEndX = 0;
         
-        const slider = document.querySelector('.projects-slider');
-        
         slider.addEventListener('touchstart', e => {
             touchStartX = e.changedTouches[0].screenX;
             stopAutoPlay();
@@ -281,17 +302,17 @@ document.addEventListener('DOMContentLoaded', function() {
         slider.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-            if (totalSlides > cardsToShow) {
+            if (actualTotalSlides > cardsToShow) {
                 startAutoPlay();
             }
         });
         
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
-                moveSlide(1); // Swipe left
+                moveSlide(1);
             }
             if (touchEndX > touchStartX + 50) {
-                moveSlide(-1); // Swipe right
+                moveSlide(-1);
             }
         }
         
@@ -301,10 +322,18 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
                 stopAutoPlay();
-                updateCardsToShow();
+                
+                // Remove old clones
+                document.querySelectorAll('.project-card.cloned').forEach(clone => clone.remove());
+                
+                // Recreate infinite slider
+                createInfiniteSlider();
+                cardsToShow = getCardsToShow();
+                currentSlide = 0;
                 initSlider();
-                updateSlider();
-                if (totalSlides > cardsToShow) {
+                updateSlider(false);
+                
+                if (actualTotalSlides > cardsToShow) {
                     startAutoPlay();
                 }
             }, 250);
