@@ -133,3 +133,181 @@ window.addEventListener('load', function() {
     window.addEventListener('scroll', reveal);
     reveal();
 });
+
+// Card Flip Functionality
+function flipCard(card) {
+    // Prevent flip when clicking on links
+    if (event.target.tagName === 'A' || event.target.closest('a')) {
+        return;
+    }
+    
+    card.classList.toggle('flipped');
+}
+
+// Projects Slider
+let currentSlide = 0;
+let cardsToShow = 3;
+const totalSlides = document.querySelectorAll('.project-card').length;
+let maxSlide = totalSlides - cardsToShow;
+
+function getCardsToShow() {
+    if (window.innerWidth <= 576) {
+        return 1;
+    } else if (window.innerWidth <= 768) {
+        return 2;
+    } else {
+        return 3;
+    }
+}
+
+function updateCardsToShow() {
+    cardsToShow = getCardsToShow();
+    maxSlide = Math.max(0, totalSlides - cardsToShow);
+    
+    // Reset to valid position if needed
+    if (currentSlide > maxSlide) {
+        currentSlide = maxSlide;
+    }
+}
+
+function initSlider() {
+    updateCardsToShow();
+    const dotsContainer = document.querySelector('.slider-dots');
+    dotsContainer.innerHTML = ''; // Clear existing dots
+    
+    // Create dots based on number of slides needed
+    for (let i = 0; i <= maxSlide; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+}
+
+function moveSlide(direction) {
+    currentSlide += direction;
+    
+    if (currentSlide < 0) {
+        currentSlide = 0;
+    } else if (currentSlide > maxSlide) {
+        currentSlide = maxSlide;
+    }
+    
+    updateSlider();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+}
+
+function updateSlider() {
+    const slider = document.querySelector('.projects-slider');
+    const cardWidth = slider.querySelector('.project-card').offsetWidth;
+    const gap = 30; // gap between cards
+    const offset = -(currentSlide * (cardWidth + gap));
+    slider.style.transform = `translateX(${offset}px)`;
+    
+    // Update dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+    
+    // Disable buttons at boundaries
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (prevBtn && nextBtn) {
+        prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
+        prevBtn.style.cursor = currentSlide === 0 ? 'not-allowed' : 'pointer';
+        nextBtn.style.opacity = currentSlide === maxSlide ? '0.3' : '1';
+        nextBtn.style.cursor = currentSlide === maxSlide ? 'not-allowed' : 'pointer';
+    }
+}
+
+// Auto-play slider
+let autoPlayInterval;
+
+function startAutoPlay() {
+    autoPlayInterval = setInterval(() => {
+        if (currentSlide < maxSlide) {
+            moveSlide(1);
+        } else {
+            currentSlide = -1;
+            moveSlide(1);
+        }
+    }, 5000);
+}
+
+function stopAutoPlay() {
+    clearInterval(autoPlayInterval);
+}
+
+// Initialize slider and start autoplay
+document.addEventListener('DOMContentLoaded', function() {
+    if (totalSlides > 0) {
+        initSlider();
+        updateSlider(); // Initial button state
+        
+        // Only start autoplay if there are enough cards
+        if (totalSlides > cardsToShow) {
+            startAutoPlay();
+        }
+        
+        // Pause autoplay on hover
+        const sliderContainer = document.querySelector('.projects-slider-container');
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+            sliderContainer.addEventListener('mouseleave', () => {
+                if (totalSlides > cardsToShow) {
+                    startAutoPlay();
+                }
+            });
+        }
+        
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const slider = document.querySelector('.projects-slider');
+        
+        slider.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoPlay();
+        });
+        
+        slider.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            if (totalSlides > cardsToShow) {
+                startAutoPlay();
+            }
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveSlide(1); // Swipe left
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveSlide(-1); // Swipe right
+            }
+        }
+        
+        // Update on window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                stopAutoPlay();
+                updateCardsToShow();
+                initSlider();
+                updateSlider();
+                if (totalSlides > cardsToShow) {
+                    startAutoPlay();
+                }
+            }, 250);
+        });
+    }
+});

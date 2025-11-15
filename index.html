@@ -164,32 +164,14 @@
             </div>
 
             <div class="languages-container">
-                <h3>Languages</h3>
-                <div class="languages-grid">
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>English</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Hindi</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Marathi</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Turkish</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Japanese (Basic)</span>
-                    </div>
-                    <div class="language-item">
-                        <i class="fas fa-comment"></i>
-                        <span>Urdu</span>
-                    </div>
+                <h3>Spoken Languages</h3>
+                <div class="languages-list">
+                    <span class="language-badge">🌐 English</span>
+                    <span class="language-badge">🇮🇳 Hindi</span>
+                    <span class="language-badge">🇮🇳 Marathi</span>
+                    <span class="language-badge">🇹🇷 Turkish</span>
+                    <span class="language-badge">🇯🇵 Japanese</span>
+                    <span class="language-badge">🇮🇳  Urdu</span>
                 </div>
             </div>
         </div>
@@ -260,135 +242,318 @@
                 <span class="title-bar"></span>
             </div>
             
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="aluproject.jpeg" alt="AI Chess Bot">
-                    </div>
-                    <div class="project-info">
-                        <h3>AI Chess Bot with Human-like Play</h3>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>PyTorch</span>
-                            <span>CNNs</span>
-                            <span>Deep Learning</span>
+            <div class="projects-slider-container">
+                <button class="slider-btn prev-btn" onclick="moveSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="projects-slider">
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="AI_chess_CNN_bot.png" alt="AI Chess Bot">
+                                    <div class="project-overlay">
+                                        <div class="project-number">01</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>AI Chess Bot with Human-like Play</h3>
+                                    <div class="project-tags">
+                                        <span>Python</span>
+                                        <span>PyTorch</span>
+                                        <span>CNNs</span>
+                                    </div>
+                                    <p>
+                                        Developed a deep-learning chess engine trained on thousands of human games to predict natural, human-like moves instead of perfect engine play.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>AI Chess Bot with Human-like Play</h3>
+                                    <div class="project-tags">
+                                        <span>Python</span>
+                                        <span>PyTorch</span>
+                                        <span>CNNs</span>
+                                    </div>
+                                    <p>
+                                        Developed a deep-learning chess engine trained on thousands of human games to predict natural, human-like moves instead of perfect engine play. Implemented a CNN that encodes board positions and outputs likely next moves based on real PGN data. Built preprocessing pipelines, mapping board states to training labels, and evaluated move accuracy across openings and middlegame patterns. Added an interactive interface to let users play against the model and experience realistic, imperfect decision-making similar to mid-level human opponents.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AnsariUsaid/ML_Chess_project" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> View on GitHub
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p>
-                            Developing a deep learning-based chess engine trained on played games to predict human-like moves. Features an interactive interface and uses Convolutional Neural Networks for move prediction based on historical game data.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                        </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="mazeproject.jpeg" alt="Interview App">
-                    </div>
-                    <div class="project-info">
-                        <h3>AI-Powered Interview Platform</h3>
-                        <div class="project-tags">
-                            <span>React</span>
-                            <span>TypeScript</span>
-                            <span>FastAPI</span>
-                            <span>Tailwind CSS</span>
-                            <span>Redux</span>
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="Interview_app.png" alt="Interview App">
+                                    <div class="project-overlay">
+                                        <div class="project-number">02</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>AI Interview Application</h3>
+                                    <div class="project-tags">
+                                        <span>React</span>
+                                        <span>TypeScript</span>
+                                        <span>FastAPI</span>
+                                        <span>Tailwind CSS</span>
+                                    </div>
+                                    <p>
+                                        A full-stack AI-powered interview platform capable of parsing resumes, generating dynamic interview questions, and evaluating candidate responses.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>AI Interview Application</h3>
+                                    <div class="project-tags">
+                                        <span>React</span>
+                                        <span>TypeScript</span>
+                                        <span>FastAPI</span>
+                                        <span>Redux Toolkit</span>
+                                    </div>
+                                    <p>
+                                        A full-stack AI-powered interview platform capable of parsing resumes, generating dynamic interview questions, evaluating candidate responses, and producing automated feedback summaries using LLM APIs. Implemented advanced state management with Redux Toolkit, persistent storage, and modular UI with Tailwind + shadcn components. The FastAPI backend manages resume extraction, calls AI endpoints, stores interview history, and processes scoring. Designed to simulate realistic interview sessions, making the system valuable for HR automation and candidate training.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AnsariUsaid/ai-interview-application" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> View on GitHub
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p>
-                            Built a full-stack interview platform featuring automated question generation, resume parsing, and intelligent response evaluation using API-driven LLM integration. Includes Redux Toolkit for state management.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> View on GitHub</a>
+                    </div>
+                    
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="Todo_app.png" alt="To-Do App">
+                                    <div class="project-overlay">
+                                        <div class="project-number">03</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>To-Do Application</h3>
+                                    <div class="project-tags">
+                                        <span>FastAPI</span>
+                                        <span>Jinja</span>
+                                        <span>JavaScript</span>
+                                        <span>JWT</span>
+                                    </div>
+                                    <p>
+                                        Created a complete task-management application with secure user authentication, JWT token handling, and RESTful CRUD operations.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>To-Do Application</h3>
+                                    <div class="project-tags">
+                                        <span>FastAPI</span>
+                                        <span>Jinja</span>
+                                        <span>HTML/CSS</span>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <p>
+                                        Created a complete task-management application with secure user authentication, JWT token handling, and RESTful CRUD operations. Designed Jinja-templated pages for clean server-side rendering, supported by responsive HTML/CSS and interactive JavaScript. The backend handles session logic, protected endpoints, and validation, allowing users to add, update, sort, and manage tasks effortlessly. Focused on intuitive UI/UX and structured backend design to demonstrate full-stack flow from API creation to user-facing interface.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> View on GitHub
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="Assignments_site.png" alt="Educational Assignment Platform">
+                                    <div class="project-overlay">
+                                        <div class="project-number">04</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Educational Assignment Portal</h3>
+                                    <div class="project-tags">
+                                        <span>FastAPI</span>
+                                        <span>React</span>
+                                        <span>TypeScript</span>
+                                        <span>AWS S3</span>
+                                    </div>
+                                    <p>
+                                        Developed a multi-role educational platform where students can upload assignments and teachers can view and manage submissions.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>Educational Assignment Portal</h3>
+                                    <div class="project-tags">
+                                        <span>FastAPI</span>
+                                        <span>React</span>
+                                        <span>TypeScript</span>
+                                        <span>AWS S3</span>
+                                    </div>
+                                    <p>
+                                        Developed a multi-role educational platform where students can upload assignments and teachers can view, organize, and download submissions. Integrated AWS S3 for scalable and secure file storage, ensuring reliable access to uploaded documents. Built React + TypeScript dashboards with modern UI patterns, while FastAPI handled authentication, JWT security, file management, and assignment logic. The project demonstrates strong understanding of full-stack architecture, cloud integration, and real academic workflows with smooth teacher-student interaction.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/AnsariUsaid/Education_portal_using-s3" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> View on GitHub
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="portproject.jpeg" alt="Portfolio Website">
+                                    <div class="project-overlay">
+                                        <div class="project-number">05</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Portfolio Website</h3>
+                                    <div class="project-tags">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <p>
+                                        A responsive, mobile-friendly personal portfolio built to professionally present projects, skills, and contact information.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>Portfolio Website</h3>
+                                    <div class="project-tags">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <p>
+                                        A responsive, mobile-friendly personal portfolio built to professionally present projects, skills, and contact information. Designed with clean layouts, smooth scrolling effects, and custom CSS animations to enhance user experience. Showcases GitHub repositories, project cards, and a minimal aesthetic suitable for recruiters and clients. Hosted using GitHub Pages for fast loading, easy updates, and integration with version control, ensuring the site remains organized, lightweight, and visually appealing on all devices.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://ansariusaid.github.io/Portfolio" target="_blank" class="btn project-btn">
+                                            <i class="fas fa-eye"></i> Live Demo
+                                        </a>
+                                        <a href="https://github.com/AnsariUsaid/Portfolio" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> Source Code
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="flipCard(this)">
+                        <div class="project-card-inner">
+                            <div class="project-card-front">
+                                <div class="project-img">
+                                    <img src="Health_care_interoperability.png" alt="Healthcare System">
+                                    <div class="project-overlay">
+                                        <div class="project-number">06</div>
+                                    </div>
+                                </div>
+                                <div class="project-info">
+                                    <h3>Healthcare Interoperability System</h3>
+                                    <div class="project-tags">
+                                        <span>Python</span>
+                                        <span>JavaScript</span>
+                                        <span>SQL</span>
+                                        <span>PL/SQL</span>
+                                    </div>
+                                    <p>
+                                        Contributed to a healthcare data-exchange system built using FHIR standards to ensure structured, secure communication across hospitals.
+                                    </p>
+                                    <div class="click-hint">
+                                        <i class="fas fa-info-circle"></i> Click for details
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-card-back">
+                                <div class="project-info-detailed">
+                                    <h3>Healthcare Interoperability System</h3>
+                                    <div class="project-tags">
+                                        <span>Python</span>
+                                        <span>JavaScript</span>
+                                        <span>SQL</span>
+                                        <span>PL/SQL</span>
+                                    </div>
+                                    <p>
+                                        Contributed to a healthcare data-exchange system built using FHIR standards to ensure structured, secure communication across hospitals and emergency units. Implemented patient-matching logic to identify individuals across different databases and designed workflows that support emergency data access. Involved in backend development using SQL/PLSQL, API handling, and data formatting to maintain interoperable records. The project focuses on real-world healthcare challenges such as unified patient identity, standardization, data privacy, and seamless cross-institution data flow.
+                                    </p>
+                                    <div class="project-links">
+                                        <a href="https://github.com/Ibrubicks/healthcare-interoperability-system" target="_blank" class="btn project-btn">
+                                            <i class="fab fa-github"></i> View on GitHub
+                                        </a>
+                                    </div>
+                                    <div class="back-hint">
+                                        <i class="fas fa-undo"></i> Click to go back
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="portproject.jpeg" alt="To-Do App">
-                    </div>
-                    <div class="project-info">
-                        <h3>Full-Stack To-Do Application</h3>
-                        <div class="project-tags">
-                            <span>FastAPI</span>
-                            <span>Jinja</span>
-                            <span>JavaScript</span>
-                            <span>JWT Auth</span>
-                        </div>
-                        <p>
-                            Built a full-stack task management application with FastAPI backend and Jinja templating. Implemented RESTful APIs and JWT-based user authentication for secure task management.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="aluproject.jpeg" alt="Educational Assignment Platform">
-                    </div>
-                    <div class="project-info">
-                        <h3>Educational Assignment Upload/Download Platform</h3>
-                        <div class="project-tags">
-                            <span>FastAPI</span>
-                            <span>React</span>
-                            <span>AWS S3</span>
-                            <span>TypeScript</span>
-                        </div>
-                        <p>
-                            Built a web application enabling students to upload assignments and teachers to view submissions. Integrated AWS S3 for secure file storage and used AI for frontend creation with React & TypeScript.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="portproject.jpeg" alt="Portfolio Website">
-                    </div>
-                    <div class="project-info">
-                        <h3>Personal Portfolio Website</h3>
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>Responsive Design</span>
-                        </div>
-                        <p>
-                            Designed and developed a responsive personal portfolio website showcasing my skills, projects, and educational background. Implemented modern design principles with interactive elements and smooth animations.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://ansariusaid.github.io/Portfolio" target="_blank" class="btn project-btn"><i class="fas fa-eye"></i> Live Demo</a>
-                            <a href="https://github.com/AnsariUsaid/Portfolio" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> Source Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="mazeproject.jpeg" alt="Maze Solver Bot">
-                    </div>
-                    <div class="project-info">
-                        <h3>Virtual Maze Solver Bot</h3>
-                        <div class="project-tags">
-                            <span>Arduino</span>
-                            <span>Robotics</span>
-                            <span>Sensors</span>
-                            <span>Algorithm</span>
-                        </div>
-                        <p>
-                            Developed an autonomous maze-solving robot using Arduino microcontroller with IR and ultrasonic sensors. Efficiently navigates through complex mazes using advanced path-finding algorithms and sensor-based decision making.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/AnsariUsaid" target="_blank" class="btn project-btn"><i class="fab fa-github"></i> View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
+                <button class="slider-btn next-btn" onclick="moveSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
+            
+            <div class="slider-dots"></div>
         </div>
     </section>
 
