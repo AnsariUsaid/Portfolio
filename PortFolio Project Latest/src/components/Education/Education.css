@@ -1,0 +1,138 @@
+/* ── Education ── */
+.education {
+    padding: var(--section-padding);
+}
+
+.education-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.education-header {
+    margin-bottom: 64px;
+}
+
+.education-timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Vertical line */
+.timeline-track {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-progress {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 2px;
+    background: var(--text-primary);
+    transition: height 0.3s ease-out;
+}
+
+/* Node */
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: 56px;
+}
+
+.timeline-item:last-child {
+    padding-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 12px;
+    top: 6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--bg-primary);
+    transition: var(--transition-med);
+    z-index: 1;
+}
+
+.timeline-dot.active {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    box-shadow: 0 0 0 4px rgba(240, 240, 240, 0.1);
+}
+
+.timeline-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 24px 28px;
+    transition: var(--transition-med);
+}
+
+.timeline-card:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card-hover);
+    transform: translateX(4px);
+}
+
+.timeline-period {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+}
+
+.timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.timeline-institution {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.timeline-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.timeline-detail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding-left: 12px;
+    position: relative;
+}
+
+.timeline-detail::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+    .timeline-item {
+        padding-left: 48px;
+    }
+
+    .timeline-card {
+        padding: 20px;
+    }
+}

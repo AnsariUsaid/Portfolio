@@ -1,0 +1,133 @@
+/* ── Projects ── */
+.projects {
+    padding: var(--section-padding);
+    overflow: hidden;
+}
+
+.projects-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.projects-header {
+    margin-bottom: 56px;
+}
+
+/* Swiper overrides */
+.projects-carousel {
+    padding: 10px 0 40px;
+}
+
+.projects-carousel .swiper-slide {
+    height: auto;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: var(--transition-med);
+}
+
+.project-card:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card-hover);
+    transform: translateY(-4px);
+}
+
+.project-card-number {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+}
+
+.project-card-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.project-card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.project-card-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-tag {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.project-links {
+    display: flex;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+    padding: 6px 0;
+}
+
+.project-link:hover {
+    color: var(--text-primary);
+}
+
+.project-link svg {
+    font-size: 0.95rem;
+}
+
+/* Swiper pagination dots */
+.projects-carousel .swiper-pagination-bullet {
+    background: var(--text-muted);
+    opacity: 0.4;
+    width: 8px;
+    height: 8px;
+}
+
+.projects-carousel .swiper-pagination-bullet-active {
+    background: var(--text-primary);
+    opacity: 1;
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        padding: 20px;
+    }
+}
