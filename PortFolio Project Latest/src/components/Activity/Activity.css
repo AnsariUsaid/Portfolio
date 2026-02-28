@@ -1,0 +1,104 @@
+/* ── Activity ── */
+.activity {
+    padding: 80px 0 40px;
+}
+
+.activity-inner {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.activity-header {
+    margin-bottom: 48px;
+}
+
+.activity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.activity-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    transition: var(--transition-med);
+}
+
+.activity-card:hover {
+    border-color: var(--border-light);
+    background: var(--bg-card-hover);
+}
+
+.activity-card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activity-card-title svg {
+    font-size: 1.3rem;
+}
+
+.activity-card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.activity-card-body {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* GitHub calendar overrides */
+.activity-card-body .react-activity-calendar {
+    max-width: 100%;
+}
+
+/* LeetCode iframe */
+.leetcode-frame {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: var(--radius-md);
+}
+
+/* Stats row */
+.activity-stats {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.activity-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.activity-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.activity-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+@media (max-width: 768px) {
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+}
