@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import GitHubCalendar from 'react-github-calendar';
+import { GitHubCalendar } from 'react-github-calendar';
 import { FiGithub } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 import './Activity.css';

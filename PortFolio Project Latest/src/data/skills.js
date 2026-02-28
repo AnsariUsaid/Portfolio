@@ -1,16 +1,17 @@
 import {
-  SiPython, SiJavascript, SiTypescript, SiCplusplus, SiC, SiJava,
+  SiPython, SiJavascript, SiTypescript, SiCplusplus, SiC,
   SiReact, SiNextdotjs, SiFastapi, SiNodedotjs, SiExpress, SiHtml5, SiCss3, SiTailwindcss, SiVite,
   SiTensorflow, SiPytorch, SiScikitlearn, SiOpencv, SiNumpy, SiPandas,
   SiMysql, SiPostgresql, SiMongodb, SiRedis, SiSqlite,
   SiArduino, SiRaspberrypi,
-  SiGit, SiGithub, SiDocker, SiAmazonwebservices, SiLinux, SiPostman, SiVisualstudiocode, SiFigma, SiVercel, SiNetlify,
+  SiGit, SiGithub, SiDocker, SiAmazonwebservices, SiLinux, SiPostman, SiFigma, SiVercel, SiNetlify,
   SiGnubash,
 } from 'react-icons/si';
 
-import { TbBinaryTree, TbNetwork, TbCpu } from 'react-icons/tb';
+import { TbBinaryTree, TbNetwork, TbCpu, TbCode } from 'react-icons/tb';
 import { BsDatabaseGear } from 'react-icons/bs';
 import { MdMemory } from 'react-icons/md';
+import { FaJava } from 'react-icons/fa6';
 
 const skills = [
   {
@@ -21,7 +22,7 @@ const skills = [
       { name: 'TypeScript', icon: SiTypescript },
       { name: 'C++', icon: SiCplusplus },
       { name: 'C', icon: SiC },
-      { name: 'Java', icon: SiJava },
+      { name: 'Java', icon: FaJava },
       { name: 'Bash', icon: SiGnubash },
     ],
   },
@@ -76,7 +77,7 @@ const skills = [
       { name: 'AWS', icon: SiAmazonwebservices },
       { name: 'Linux', icon: SiLinux },
       { name: 'Postman', icon: SiPostman },
-      { name: 'VS Code', icon: SiVisualstudiocode },
+      { name: 'VS Code', icon: TbCode },
       { name: 'Figma', icon: SiFigma },
       { name: 'Vercel', icon: SiVercel },
       { name: 'Netlify', icon: SiNetlify },
