@@ -7,7 +7,7 @@ import './Contact.css';
 const socials = [
   { icon: <FiGithub />, href: 'https://github.com/AnsariUsaid', label: 'GitHub' },
   { icon: <FiLinkedin />, href: 'https://linkedin.com/in/ansariusaid', label: 'LinkedIn' },
-  { icon: <SiLeetcode />, href: 'https://leetcode.com/u/ansariusaid/', label: 'LeetCode' },
+  { icon: <SiLeetcode />, href: 'https://leetcode.com/u/Codelearner005/', label: 'LeetCode' },
   { icon: <FiMail />, href: 'mailto:ansariusaid@gmail.com', label: 'Email' },
 ];
 

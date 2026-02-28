@@ -33,9 +33,11 @@
     position: absolute;
     left: 20px;
     top: 0;
+    bottom: 0;
     width: 2px;
+    height: 100%;
     background: var(--text-primary);
-    transition: height 0.3s ease-out;
+    transform-origin: top;
 }
 
 /* Node */

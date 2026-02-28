@@ -2,31 +2,15 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
+import TextType from './TextType';
 import './Hero.css';
 
 const socials = [
   { icon: <FiGithub />, href: 'https://github.com/AnsariUsaid', label: 'GitHub' },
   { icon: <FiLinkedin />, href: 'https://linkedin.com/in/ansariusaid', label: 'LinkedIn' },
-  { icon: <SiLeetcode />, href: 'https://leetcode.com/u/ansariusaid/', label: 'LeetCode' },
+  { icon: <SiLeetcode />, href: 'https://leetcode.com/u/Codelearner005/', label: 'LeetCode' },
   { icon: <FiMail />, href: 'mailto:ansariusaid@gmail.com', label: 'Email' },
 ];
-
-const nameText = 'Ansari Usaid Anzer';
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.03, delayChildren: 0.4 } },
-};
-
-const charVariant = {
-  hidden: { y: 60, opacity: 0, rotateX: -40 },
-  show: {
-    y: 0,
-    opacity: 1,
-    rotateX: 0,
-    transition: { type: 'spring', damping: 12, stiffness: 100 },
-  },
-};
 
 export default function Hero() {
   return (
@@ -50,15 +34,23 @@ export default function Hero() {
         {/* Animated Name */}
         <motion.h1
           className="hero-name"
-          variants={container}
-          initial="hidden"
-          animate="show"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
-          {nameText.split('').map((char, i) => (
-            <motion.span key={i} className="hero-name-char" variants={charVariant}>
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
-          ))}
+          <TextType
+            text={['Ansari Usaid Anzer']}
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor
+            cursorCharacter="_"
+            texts={['Ansari Usaid Anzer']}
+            deletingSpeed={50}
+            variableSpeedEnabled={false}
+            variableSpeedMin={60}
+            variableSpeedMax={120}
+            cursorBlinkDuration={0.5}
+          />
         </motion.h1>
 
         {/* Subtitle */}
