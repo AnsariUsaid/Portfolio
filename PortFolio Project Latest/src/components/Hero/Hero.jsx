@@ -71,7 +71,7 @@ export default function Hero() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.1 }}
         >
-          <Link to="projects" smooth duration={600} offset={-80}>
+          <Link to="projects" smooth duration={600} offset={0}>
             <motion.button
               className="hero-btn hero-btn-primary"
               whileHover={{ scale: 1.04 }}
@@ -80,7 +80,7 @@ export default function Hero() {
               View Projects <FiArrowRight />
             </motion.button>
           </Link>
-          <Link to="contact" smooth duration={600} offset={-80}>
+          <Link to="contact" smooth duration={600} offset={0}>
             <motion.button
               className="hero-btn hero-btn-secondary"
               whileHover={{ scale: 1.04 }}

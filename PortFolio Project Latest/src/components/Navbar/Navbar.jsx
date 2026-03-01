@@ -28,7 +28,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className="navbar-inner">
-        <Link to="home" smooth duration={600} offset={-80}>
+        <Link to="home" smooth duration={600} offset={0}>
           <motion.span
             className="navbar-logo"
             whileHover={{ scale: 1.05 }}
@@ -47,7 +47,7 @@ export default function Navbar() {
               spy
               smooth
               duration={600}
-              offset={-80}
+              offset={0}
               activeClass="active"
               className="navbar-link"
             >
@@ -90,7 +90,7 @@ export default function Navbar() {
                 spy
                 smooth
                 duration={600}
-                offset={-80}
+                offset={0}
                 className="navbar-link"
                 onClick={() => setMenuOpen(false)}
               >
