@@ -3,6 +3,7 @@ import { Link } from 'react-scroll';
 import { FiGithub, FiLinkedin, FiMail, FiArrowRight } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 import TextType from './TextType';
+import DecryptedText from './DecryptedText';
 import './Hero.css';
 
 const socials = [
@@ -53,15 +54,22 @@ export default function Hero() {
           />
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Subtitle with decrypt effect */}
         <motion.p
           className="hero-title"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.9 }}
         >
-          3rd Year B.Tech CSE Student @ VIT — Passionate about AI, Machine Learning,
-          Web Development &amp; Cloud Computing.
+          <DecryptedText
+            text="3rd Year B.Tech CSE Student @ VIT — Passionate about AI, Machine Learning, Web Development & Cloud Computing."
+            animateOn="view"
+            revealDirection="start"
+            speed={50}
+            maxIterations={20}
+            sequential
+            useOriginalCharsOnly={false}
+          />
         </motion.p>
 
         {/* Buttons */}

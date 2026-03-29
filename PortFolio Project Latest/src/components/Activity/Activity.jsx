@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { GitHubCalendar } from 'react-github-calendar';
 import { ActivityCalendar } from 'react-activity-calendar';
@@ -70,32 +70,54 @@ function useLeetCodeData(username) {
 }
 
 export default function Activity() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-100px' });
+  const containerRef = useRef(null);
+  
+  // Track scroll progress of the entire 250vh section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
   const { data: leetcodeData, loading } = useLeetCodeData('Codelearner005');
 
+  // We will divide the 150vh scroll into distinct phases:
+  // 0.0 - 0.4: GitHub card visible
+  // 0.4 - 0.5: GitHub card fades out
+  // 0.5 - 0.6: LeetCode card fades in
+  // 0.6 - 1.0: LeetCode card visible
+
+  // GitHub Card Animations (Fades out in the middle)
+  const githubOpacity = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 1, 0]);
+  const githubY = useTransform(scrollYProgress, [0, 0.4, 0.5], [0, 0, -50]);
+  const githubScale = useTransform(scrollYProgress, [0, 0.4, 0.5], [1, 1, 0.95]);
+  const githubPointerEvents = useTransform(scrollYProgress, (v) => v > 0.45 ? "none" : "auto");
+
+  // LeetCode Card Animations (Fades in after GitHub is gone)
+  const leetcodeOpacity = useTransform(scrollYProgress, [0.5, 0.6, 1], [0, 1, 1]);
+  const leetcodeY = useTransform(scrollYProgress, [0.5, 0.6, 1], [50, 0, 0]);
+  const leetcodeScale = useTransform(scrollYProgress, [0.5, 0.6, 1], [0.95, 1, 1]);
+  const leetcodePointerEvents = useTransform(scrollYProgress, (v) => v < 0.55 ? "none" : "auto");
+
   return (
-    <section className="activity" ref={ref}>
+    <section className="activity" ref={containerRef} id="activity">
       <div className="activity-inner">
-        <motion.div
-          className="activity-header"
-          initial={{ y: 30, opacity: 0 }}
-          animate={inView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="activity-header">
           <h2 className="section-title">Coding Activity</h2>
           <p className="section-subtitle">
             Consistency in practice — my contributions across platforms.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="activity-grid">
+        <div className="activity-cards-wrapper">
           {/* GitHub */}
           <motion.div
-            className="activity-card"
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            className="activity-card github-card"
+            style={{ 
+              opacity: githubOpacity, 
+              y: githubY, 
+              scale: githubScale,
+              pointerEvents: githubPointerEvents 
+            }}
           >
             <h3 className="activity-card-title">
               <FiGithub /> GitHub
@@ -105,9 +127,9 @@ export default function Activity() {
               <GitHubCalendar
                 username="AnsariUsaid"
                 colorScheme="dark"
-                blockSize={12}
-                blockMargin={4}
-                fontSize={12}
+                blockSize={10}
+                blockMargin={3}
+                fontSize={10}
                 hideColorLegend
                 style={{ width: '100%' }}
               />
@@ -116,10 +138,13 @@ export default function Activity() {
 
           {/* LeetCode */}
           <motion.div
-            className="activity-card"
-            initial={{ y: 40, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            className="activity-card leetcode-card"
+            style={{ 
+              opacity: leetcodeOpacity, 
+              y: leetcodeY, 
+              scale: leetcodeScale,
+              pointerEvents: leetcodePointerEvents
+            }}
           >
             <h3 className="activity-card-title">
               <SiLeetcode /> LeetCode
@@ -151,9 +176,9 @@ export default function Activity() {
                     dark: ['#161616', '#39d353'],
                   }}
                   colorScheme="dark"
-                  blockSize={12}
-                  blockMargin={4}
-                  fontSize={12}
+                  blockSize={10}
+                  blockMargin={3}
+                  fontSize={10}
                   hideColorLegend
                   hideTotalCount
                 />

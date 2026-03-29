@@ -1,22 +1,80 @@
 /* ── Activity ── */
 .activity {
-    padding: 80px 0 40px;
+    padding: 80px 0;
+    height: 150vh;
+    /* Shorter height to remove dead scroll space */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background glowing blur behind the cards */
+.activity::before,
+.activity::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(150px);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.activity::before {
+    background: #39d353;
+    top: 20%;
+    left: 10%;
+    animation: float 20s ease-in-out infinite alternate;
+}
+
+.activity::after {
+    background: #26a641;
+    bottom: 20%;
+    right: 10%;
+    animation: float 25s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(100px, 100px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-50px, 150px) scale(0.9);
+    }
 }
 
 .activity-inner {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: var(--container-padding);
+    position: sticky;
+    top: 15vh;
+    /* Stick below navbar */
+    height: 85vh;
+    /* Take up viewport space */
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
 }
 
 .activity-header {
     margin-bottom: 48px;
+    text-align: center;
 }
 
-.activity-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
+.activity-cards-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    /* Make cards somewhat small and centered */
+    margin: 0 auto;
+    flex: 1;
 }
 
 .activity-card {
@@ -24,12 +82,84 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 32px;
-    transition: var(--transition-med);
+    transition: box-shadow var(--transition-slow), border-color var(--transition-slow), transform var(--transition-slow);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    will-change: transform, opacity;
+    /* initial glow */
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Create an animated gradient border effect */
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    animation: rotate 10s linear infinite;
+    opacity: 0;
+    transition: opacity var(--transition-med);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* GitHub Theme Glow */
+.github-card::before {
+    background: conic-gradient(from 0deg,
+            transparent 0%,
+            rgba(88, 166, 255, 0.1) 25%,
+            rgba(137, 87, 229, 0.4) 50%,
+            rgba(88, 166, 255, 0.1) 75%,
+            transparent 100%);
+}
+
+.github-card:hover {
+    border-color: rgba(137, 87, 229, 0.5);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(137, 87, 229, 0.2),
+        0 0 20px rgba(88, 166, 255, 0.1);
+}
+
+/* LeetCode Theme Glow */
+.leetcode-card::before {
+    background: conic-gradient(from 0deg,
+            transparent 0%,
+            rgba(57, 211, 83, 0.1) 25%,
+            rgba(38, 166, 65, 0.4) 50%,
+            rgba(57, 211, 83, 0.1) 75%,
+            transparent 100%);
+}
+
+.leetcode-card:hover {
+    border-color: rgba(57, 211, 83, 0.5);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px -10px rgba(57, 211, 83, 0.2),
+        0 0 20px rgba(57, 211, 83, 0.1);
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Ensure content stays above the gradient */
+.activity-card>* {
+    position: relative;
+    z-index: 1;
 }
 
 .activity-card:hover {
-    border-color: var(--border-light);
     background: var(--bg-card-hover);
+}
+
+.activity-card:hover::before {
+    opacity: 1;
 }
 
 .activity-card-title {
