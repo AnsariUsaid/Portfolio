@@ -1,17 +1,19 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, FreeMode } from 'swiper/modules';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { Autoplay, Pagination, FreeMode, EffectCoverflow } from 'swiper/modules';
+import { FiGithub, FiExternalLink, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import projects from '../../data/projects';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
+import 'swiper/css/effect-coverflow';
 import './Projects.css';
 
 export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   return (
     <section className="projects section" id="projects" ref={ref}>
@@ -29,15 +31,26 @@ export default function Projects() {
         </motion.div>
 
         <motion.div
+          className="projects-carousel-wrapper"
           initial={{ y: 40, opacity: 0 }}
           animate={inView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
+          {/* Custom Left Arrow */}
+          <button
+            className="custom-nav-arrow custom-nav-prev"
+            onClick={() => swiperInstance?.slidePrev()}
+            aria-label="Previous project"
+          >
+            <FiChevronLeft />
+          </button>
+
           <Swiper
             className="projects-carousel"
-            modules={[Autoplay, Pagination, FreeMode]}
-            spaceBetween={24}
+            modules={[Autoplay, Pagination, FreeMode, EffectCoverflow]}
+            spaceBetween={30}
             slidesPerView={1}
+            centeredSlides={true}
             loop={true}
             speed={800}
             autoplay={{
@@ -46,10 +59,19 @@ export default function Projects() {
               pauseOnMouseEnter: true,
             }}
             pagination={{ clickable: true }}
+            effect="coverflow"
+            coverflowEffect={{
+              rotate: 0,
+              stretch: 0,
+              depth: 150,
+              modifier: 1.5,
+              slideShadows: false,
+            }}
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
             }}
+            onSwiper={setSwiperInstance}
           >
             {projects.map((project, i) => (
               <SwiperSlide key={project.id}>
@@ -93,6 +115,15 @@ export default function Projects() {
               </SwiperSlide>
             ))}
           </Swiper>
+
+          {/* Custom Right Arrow */}
+          <button
+            className="custom-nav-arrow custom-nav-next"
+            onClick={() => swiperInstance?.slideNext()}
+            aria-label="Next project"
+          >
+            <FiChevronRight />
+          </button>
         </motion.div>
       </div>
     </section>

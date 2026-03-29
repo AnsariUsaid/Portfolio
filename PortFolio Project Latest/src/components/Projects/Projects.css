@@ -130,3 +130,68 @@
         padding: 20px;
     }
 }
+
+/* Carousel wrapper for positioning custom arrows */
+.projects-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Custom Navigation Arrows */
+.custom-nav-arrow {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    padding: 0;
+}
+
+.custom-nav-arrow:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.custom-nav-arrow:active {
+    transform: scale(0.92);
+}
+
+@media (max-width: 640px) {
+    .custom-nav-arrow {
+        display: none;
+    }
+    .projects-carousel-wrapper {
+        gap: 0;
+    }
+}
+
+/* Keep all slides at full opacity so overlapping is cleanly visible. Dim inactive cards to make center pop */
+.projects-carousel .swiper-slide .project-card {
+    transition: filter 0.5s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 1 !important;
+    filter: brightness(0.65);
+    /* less bright */
+    pointer-events: none;
+    /* keep inactive cards unclickable */
+}
+
+/* Distinguish the active center slide solely via brightness, border, and shadow */
+.projects-carousel .swiper-slide-active .project-card {
+    filter: brightness(1);
+    /* restore full brightness */
+    border-color: var(--border-light);
+    box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7);
+    pointer-events: auto;
+}
