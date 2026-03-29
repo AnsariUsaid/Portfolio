@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import './About.css';
 
 const highlights = [
-  { value: '8.72', label: 'CGPA' },
-  { value: '6+', label: 'Projects' },
+  { value: '8.85', label: 'CGPA' },
+  { value: '10+', label: 'Projects' },
   { value: '2', label: 'Certifications' },
 ];
 

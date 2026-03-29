@@ -59,6 +59,66 @@ const projects = [
     github: 'https://github.com/Ibrubicks/healthcare-interoperability-system',
     live: null,
   },
+  {
+    id: 7,
+    title: 'HinglishSarc',
+    subtitle: 'Emotion Trajectory for Sarcasm Detection',
+    description:
+      'Research project using IndicBERT and BiLSTM to detect sarcasm in Hindi-English code-mixed text. Models emotion trajectories across conversational threads to capture sentiment-emotion mismatches.',
+    tech: ['Python', 'PyTorch', 'IndicBERT', 'BiLSTM', 'NLP'],
+    github: 'https://github.com/AnsariUsaid/HinglishSarc-Emotion-Trajectory',
+    live: null,
+  },
+  {
+    id: 8,
+    title: 'ScalSQL',
+    subtitle: 'Cloud Text-to-SQL System',
+    description:
+      'Scalable cloud-based Text-to-SQL query processing system deployed on AWS. Converts natural language queries into executable SQL with automatic scaling, load balancing, and high availability.',
+    tech: ['JavaScript', 'AWS Lambda', 'API Gateway', 'RDS', 'Serverless'],
+    github: 'https://github.com/AnsariUsaid/ScalSQL',
+    live: null,
+  },
+  {
+    id: 9,
+    title: 'SalesFlow CRM',
+    subtitle: 'Automobile Parts Sales CRM',
+    description:
+      'Custom CRM for automobile parts businesses managing call-based sales operations. Features order tracking, team assignment, payment processing via Authorize.net, and role-based access.',
+    tech: ['Next.js 16', 'React 19', 'TypeScript', 'Tailwind CSS', 'Clerk'],
+    github: 'https://github.com/AnsariUsaid/salesflow-CRM',
+    live: null,
+  },
+  {
+    id: 10,
+    title: 'Video Reconstruction',
+    subtitle: 'Jumbled Frame Reordering',
+    description:
+      'Reconstructs jumbled video frames using YOLOv8x person detection, motion modeling, and hybrid SSIM-based optimization. Combines trajectory prediction with 2-opt search for smooth reconstruction.',
+    tech: ['Python', 'YOLOv8x', 'OpenCV', 'SSIM', 'Computer Vision'],
+    github: 'https://github.com/AnsariUsaid/jumbled-video-reconstruction',
+    live: null,
+  },
+  {
+    id: 11,
+    title: 'Data Warehouse',
+    subtitle: 'SQL Server Medallion Architecture',
+    description:
+      'Enterprise data warehouse implementing Bronze, Silver, Gold layers. Handles ETL from ERP/CRM CSV sources through progressive refinement to analytics-ready star schemas.',
+    tech: ['T-SQL', 'SQL Server', 'Data Engineering', 'ETL'],
+    github: 'https://github.com/AnsariUsaid/SQL-DataWareHouse',
+    live: null,
+  },
+  {
+    id: 12,
+    title: 'React Quiz App',
+    subtitle: 'Interactive Timed Quiz',
+    description:
+      'Interactive quiz application with timers, scoring, and progress tracking. Features 30-second countdown per question, high score persistence, and useReducer for state management.',
+    tech: ['React 19', 'JSON Server', 'CSS3', 'useReducer'],
+    github: 'https://github.com/AnsariUsaid/React-QuizApp',
+    live: null,
+  },
 ];
 
 export default projects;

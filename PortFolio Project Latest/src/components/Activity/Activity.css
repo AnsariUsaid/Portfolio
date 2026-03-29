@@ -1,65 +1,21 @@
 /* ── Activity ── */
 .activity {
     padding: 80px 0;
-    height: 150vh;
-    /* Shorter height to remove dead scroll space */
+    min-height: 100vh;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
-/* Background glowing blur behind the cards */
-.activity::before,
-.activity::after {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(150px);
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.15;
-}
-
-.activity::before {
-    background: #39d353;
-    top: 20%;
-    left: 10%;
-    animation: float 20s ease-in-out infinite alternate;
-}
-
-.activity::after {
-    background: #26a641;
-    bottom: 20%;
-    right: 10%;
-    animation: float 25s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes float {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    50% {
-        transform: translate(100px, 100px) scale(1.2);
-    }
-
-    100% {
-        transform: translate(-50px, 150px) scale(0.9);
-    }
-}
+/* Background glowing blur removed per user request */
 
 .activity-inner {
     max-width: var(--container-width);
+    width: 100%;
     margin: 0 auto;
     padding: var(--container-padding);
-    position: sticky;
-    top: 15vh;
-    /* Stick below navbar */
-    height: 85vh;
-    /* Take up viewport space */
-    display: flex;
-    flex-direction: column;
+    position: relative;
     z-index: 1;
 }
 
@@ -68,154 +24,151 @@
     text-align: center;
 }
 
+/* Flex expanding layout */
 .activity-cards-wrapper {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     width: 100%;
-    max-width: 800px;
-    /* Make cards somewhat small and centered */
+    height: 700px; /* height for mobile */
+    max-width: 1100px;
     margin: 0 auto;
-    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .activity-cards-wrapper {
+        flex-direction: row;
+        height: 480px; /* height for desktop */
+    }
 }
 
 .activity-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 32px;
-    transition: box-shadow var(--transition-slow), border-color var(--transition-slow), transform var(--transition-slow);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    will-change: transform, opacity;
-    /* initial glow */
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-}
-
-/* Create an animated gradient border effect */
-.activity-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    animation: rotate 10s linear infinite;
-    opacity: 0;
-    transition: opacity var(--transition-med);
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* GitHub Theme Glow */
-.github-card::before {
-    background: conic-gradient(from 0deg,
-            transparent 0%,
-            rgba(88, 166, 255, 0.1) 25%,
-            rgba(137, 87, 229, 0.4) 50%,
-            rgba(88, 166, 255, 0.1) 75%,
-            transparent 100%);
-}
-
-.github-card:hover {
-    border-color: rgba(137, 87, 229, 0.5);
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 20px 40px -10px rgba(137, 87, 229, 0.2),
-        0 0 20px rgba(88, 166, 255, 0.1);
-}
-
-/* LeetCode Theme Glow */
-.leetcode-card::before {
-    background: conic-gradient(from 0deg,
-            transparent 0%,
-            rgba(57, 211, 83, 0.1) 25%,
-            rgba(38, 166, 65, 0.4) 50%,
-            rgba(57, 211, 83, 0.1) 75%,
-            transparent 100%);
-}
-
-.leetcode-card:hover {
-    border-color: rgba(57, 211, 83, 0.5);
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 20px 40px -10px rgba(57, 211, 83, 0.2),
-        0 0 20px rgba(57, 211, 83, 0.1);
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Ensure content stays above the gradient */
-.activity-card>* {
     position: relative;
-    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    transition: background-color var(--transition-med), border-color var(--transition-med);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.activity-card:hover {
-    background: var(--bg-card-hover);
-}
+/* Remove animated gradient border effect */
 
-.activity-card:hover::before {
+.activity-card:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
+
+.github-card[data-active="true"] { border-color: rgba(137, 87, 229, 0.4); }
+.leetcode-card[data-active="true"] { border-color: rgba(57, 211, 83, 0.4); }
+
+/* Collapsed state */
+.activity-card-collapsed {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--text-muted);
     opacity: 1;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+    z-index: 2;
 }
 
+.collapsed-text {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Expanded state content */
+.activity-card-content {
+    position: absolute;
+    inset: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    transition-delay: 0s;
+    z-index: 3;
+}
+
+/* Toggle visibility based on active */
+.activity-card[data-active="true"] .activity-card-collapsed {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+.activity-card[data-active="true"] .activity-card-content {
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.25s; /* delay so it content fades in after expanding starts */
+}
+
+/* Content typography */
 .activity-card-title {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
     gap: 10px;
+    /* Ensure no text wrapping */
+    white-space: nowrap;
 }
-
-.activity-card-title svg {
-    font-size: 1.3rem;
-}
-
+.activity-card-title svg { font-size: 1.5rem; }
 .activity-card-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     margin-bottom: 24px;
+    white-space: nowrap;
 }
-
 .activity-card-body {
     width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    /* Allow horizontal scrolling on mobile */
     overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Inner content block prevents SVG shrinking */
+.activity-card-content-inner {
+    min-width: 600px;
+    width: max-content;
 }
 
 /* GitHub calendar overrides */
-.activity-card-body .react-activity-calendar {
-    max-width: 100%;
-}
+.activity-card-body .react-activity-calendar { max-width: 100%; }
 
 /* LeetCode stats row */
 .leetcode-stats-row {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     margin-bottom: 24px;
+    white-space: nowrap;
 }
-
-.leetcode-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
+.leetcode-stat { display: flex; flex-direction: column; gap: 4px; }
 .leetcode-stat-value {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
+    color: var(--text-light);
 }
-
 .leetcode-stat-label {
     font-size: 0.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
 }
 
 /* Loading state */
