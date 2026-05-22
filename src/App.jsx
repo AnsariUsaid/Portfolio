@@ -673,15 +673,17 @@ function About() {
 /* ---------- WORK ---------- */
 function ProjectCard({ p, i, total }) {
   const ref = useRef(null);
-  const [parallax, setParallax] = useState(0);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const visual = el.querySelector(".pcard-visual");
     const onScroll = () => {
-      if (!ref.current) return;
-      const r = ref.current.getBoundingClientRect();
+      if (!visual) return;
+      const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const center = (r.top + r.height / 2 - vh / 2) / (vh / 2);
-      setParallax(Math.max(-1, Math.min(1, center)));
+      visual.style.setProperty("--py", `${Math.max(-1, Math.min(1, center)) * -28}px`);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -700,7 +702,7 @@ function ProjectCard({ p, i, total }) {
         <span className="pcard-bignum" aria-hidden="true">{p.n}</span>
 
         <div className="pcard-grid">
-          <div className="pcard-visual" style={{ "--py": `${parallax * -28}px` }}>
+          <div className="pcard-visual">
             <Placeholder label={p.placeholder} accent={p.accent} ratio="4 / 3" />
             <div className="pcard-tag">
               <span className="mono">{p.year}</span>
@@ -1003,17 +1005,56 @@ function RoadSign({ item }) {
 
 function Education() {
   const roadRef = useRef(null);
-  const progress = useSectionProgress(roadRef);
+  const [trip, setTrip] = useState(0);
   const [speed, setSpeed] = useState(0);
-  const lastRef = useRef({ t: performance.now(), p: 0 });
+
   useEffect(() => {
-    const now = performance.now();
-    const dt = Math.max(now - lastRef.current.t, 16);
-    const dp = Math.abs(progress - lastRef.current.p);
-    const v = Math.min(140, Math.round((dp / dt) * 120000));
-    setSpeed((prev) => Math.round(prev * 0.6 + v * 0.4));
-    lastRef.current = { t: now, p: progress };
-  }, [progress]);
+    let current = 0, target = 0, raf = null;
+    let lastT = performance.now(), lastP = 0;
+
+    const calc = () => {
+      if (!roadRef.current) return;
+      const r = roadRef.current.getBoundingClientRect();
+      const vh = window.innerHeight;
+      target = Math.max(0, Math.min(1, (vh - r.top) / (r.height + vh)));
+    };
+
+    const frame = (now) => {
+      const dt = Math.max(now - lastT, 8);
+      const diff = target - current;
+      if (Math.abs(diff) > 0.0003) {
+        current += diff * 0.12;
+        roadRef.current?.style.setProperty("--p", current);
+        const dp = Math.abs(current - lastP);
+        setSpeed(v => Math.round(v * 0.7 + Math.min(140, (dp / dt) * 120000) * 0.3));
+        setTrip(Math.round(current * 94));
+        lastP = current; lastT = now;
+        raf = requestAnimationFrame(frame);
+      } else {
+        current = target;
+        roadRef.current?.style.setProperty("--p", current);
+        setSpeed(0);
+        setTrip(Math.round(current * 94));
+        raf = null;
+      }
+    };
+
+    const onScroll = () => {
+      calc();
+      if (!raf) raf = requestAnimationFrame(frame);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    calc();
+    raf = requestAnimationFrame(frame);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   return (
     <Section id="education" n="04" label="Education">
@@ -1030,7 +1071,7 @@ function Education() {
         <div className="dash mono">
           <div className="dash-cell">
             <span className="dash-k">Trip</span>
-            <span className="dash-v">{Math.round(progress * 94)} <small>/ 94 KM</small></span>
+            <span className="dash-v">{trip} <small>/ 94 KM</small></span>
           </div>
           <div className="dash-cell">
             <span className="dash-k">Speed</span>
@@ -1043,7 +1084,7 @@ function Education() {
         </div>
       </div>
 
-      <div ref={roadRef} className="road" style={{ "--p": progress }}>
+      <div ref={roadRef} className="road">
         <div className="road-asphalt" aria-hidden="true">
           <span className="road-edge road-edge-l" />
           <span className="road-edge road-edge-r" />
