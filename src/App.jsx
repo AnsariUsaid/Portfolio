@@ -27,10 +27,10 @@ const SKILLS = [
   {
     group: "Languages", n: "01",
     items: [
-      { name: "Python",     level: 5, since: 2021, note: "Daily driver — ML, scripts, FastAPI.", usedIn: ["01","02","03","04","05"] },
-      { name: "C++",        level: 4, since: 2020, note: "Comfort zone for systems & DSA.",       usedIn: ["06"] },
-      { name: "TypeScript", level: 4, since: 2023, note: "Strict mode or it didn't happen.",      usedIn: ["02","03"] },
-      { name: "JavaScript", level: 4, since: 2022, note: "Glue, prototypes, browser everything.",  usedIn: ["02","03","05"] },
+      { name: "Python",     level: 5, since: 2021, note: "Daily driver — ML, scripts, FastAPI.", usedIn: ["02","03","04","06"] },
+      { name: "C++",        level: 4, since: 2020, note: "Comfort zone for systems & DSA.",       usedIn: [] },
+      { name: "TypeScript", level: 4, since: 2023, note: "Strict mode or it didn't happen.",      usedIn: ["01","02","03","05"] },
+      { name: "JavaScript", level: 4, since: 2022, note: "Glue, prototypes, browser everything.",  usedIn: ["01","05"] },
       { name: "C",          level: 4, since: 2020, note: "Where the abstractions stop lying.",    usedIn: [] },
       { name: "Java",       level: 3, since: 2022, note: "OOP coursework + Android dabbling.",    usedIn: [] },
     ],
@@ -38,42 +38,42 @@ const SKILLS = [
   {
     group: "Frontend", n: "02",
     items: [
-      { name: "React",         level: 5, since: 2023, note: "Hooks-first, component-thinking.",     usedIn: ["02","03"] },
-      { name: "Tailwind",      level: 5, since: 2024, note: "Utility-first, with restraint.",       usedIn: ["02","03"] },
+      { name: "React",         level: 5, since: 2023, note: "Hooks-first, component-thinking.",     usedIn: ["01","02","03","05"] },
+      { name: "Tailwind",      level: 5, since: 2024, note: "Utility-first, with restraint.",       usedIn: ["01","02"] },
       { name: "Redux Toolkit", level: 4, since: 2024, note: "Slices, RTK Query, no boilerplate.",   usedIn: ["02"] },
       { name: "shadcn/ui",     level: 4, since: 2024, note: "Composable primitives done right.",    usedIn: ["02"] },
-      { name: "Next.js",       level: 3, since: 2024, note: "App router, RSCs, server actions.",    usedIn: [] },
-      { name: "Figma",         level: 3, since: 2023, note: "Wireframe → high-fidelity flow.",      usedIn: ["05"] },
+      { name: "Next.js",       level: 3, since: 2024, note: "App router, RSCs, server actions.",    usedIn: ["01"] },
+      { name: "Figma",         level: 3, since: 2023, note: "Wireframe → high-fidelity flow.",      usedIn: [] },
     ],
   },
   {
     group: "Backend & Data", n: "03",
     items: [
-      { name: "FastAPI",  level: 5, since: 2023, note: "Async, typed, ships in a weekend.",          usedIn: ["02","03","05"] },
+      { name: "FastAPI",  level: 5, since: 2023, note: "Async, typed, ships in a weekend.",          usedIn: ["02","03"] },
       { name: "REST",     level: 5, since: 2022, note: "Versioned routes, sensible status codes.",   usedIn: ["02","03","05"] },
-      { name: "JWT Auth", level: 4, since: 2023, note: "Refresh tokens, role-based access.",         usedIn: ["03","05"] },
-      { name: "MySQL",    level: 4, since: 2022, note: "Schemas, joins, indexes that matter.",       usedIn: ["04"] },
-      { name: "PL/SQL",   level: 3, since: 2024, note: "Stored procedures for healthcare data.",     usedIn: ["04"] },
-      { name: "Node.js",  level: 3, since: 2023, note: "Express + tooling scripts.",                 usedIn: [] },
+      { name: "JWT Auth", level: 4, since: 2023, note: "Refresh tokens, role-based access.",         usedIn: ["01","03"] },
+      { name: "GraphQL",  level: 4, since: 2024, note: "Apollo Server + Prisma, typed resolvers.",   usedIn: ["01"] },
+      { name: "PL/SQL",   level: 3, since: 2024, note: "Stored procedures for healthcare data.",     usedIn: [] },
+      { name: "Node.js",  level: 3, since: 2023, note: "Express + tooling scripts.",                 usedIn: ["01","05"] },
     ],
   },
   {
     group: "AI / ML", n: "04",
     items: [
-      { name: "PyTorch",       level: 5, since: 2024, note: "Trained the Chess CNN end-to-end.",         usedIn: ["01"] },
-      { name: "LLM APIs",      level: 5, since: 2024, note: "OpenAI / Anthropic — prompting, eval.",     usedIn: ["02"] },
-      { name: "Deep Learning", level: 4, since: 2024, note: "CNNs, transformers, training loops.",       usedIn: ["01","02"] },
-      { name: "TensorFlow",    level: 3, since: 2024, note: "Keras for quick model iteration.",          usedIn: [] },
-      { name: "CNNs",          level: 4, since: 2024, note: "Board encoding → move probabilities.",      usedIn: ["01"] },
-      { name: "RAG",           level: 3, since: 2025, note: "Embedding pipelines + vector retrieval.",   usedIn: ["02"] },
+      { name: "PyTorch",       level: 5, since: 2024, note: "BiLSTM, CNN training end-to-end.",       usedIn: ["04"] },
+      { name: "LLM APIs",      level: 5, since: 2024, note: "OpenAI / Anthropic — prompting, eval.",  usedIn: ["02","05"] },
+      { name: "Deep Learning", level: 4, since: 2024, note: "CNNs, transformers, training loops.",    usedIn: ["04"] },
+      { name: "TensorFlow",    level: 3, since: 2024, note: "Keras for quick model iteration.",       usedIn: [] },
+      { name: "CNNs",          level: 4, since: 2024, note: "Board encoding → move probabilities.",   usedIn: [] },
+      { name: "RAG",           level: 3, since: 2025, note: "Embedding pipelines + vector retrieval.",usedIn: ["02"] },
     ],
   },
   {
     group: "Cloud & Infra", n: "05",
     items: [
-      { name: "AWS S3",     level: 4, since: 2024, note: "Pre-signed URLs, lifecycle rules.",  usedIn: ["03"] },
+      { name: "AWS S3",     level: 4, since: 2024, note: "Pre-signed URLs, lifecycle rules.",  usedIn: ["03","05"] },
       { name: "OCI",        level: 4, since: 2025, note: "Oracle-certified, Gen-AI services.", usedIn: [] },
-      { name: "Git/GitHub", level: 5, since: 2021, note: "Rebase, squash, no broken main.",    usedIn: ["01","02","03","04","05"] },
+      { name: "Git/GitHub", level: 5, since: 2021, note: "Rebase, squash, no broken main.",    usedIn: ["01","02","03","04","05","06"] },
       { name: "Linux",      level: 4, since: 2021, note: "tmux, vim, the usual suspects.",     usedIn: [] },
     ],
   },
@@ -81,9 +81,9 @@ const SKILLS = [
     group: "Embedded", n: "06",
     items: [
       { name: "Verilog",   level: 3, since: 2024, note: "ALU + sequential circuit design.",   usedIn: [] },
-      { name: "Arduino",   level: 4, since: 2022, note: "Sensor fusion for the maze bot.",     usedIn: ["06"] },
+      { name: "Arduino",   level: 4, since: 2022, note: "Sensor fusion for the maze bot.",     usedIn: [] },
       { name: "Assembly",  level: 3, since: 2024, note: "MIPS coursework — reg by reg.",       usedIn: [] },
-      { name: "Sensors",   level: 4, since: 2022, note: "IR + ultrasonic, filtered noise.",    usedIn: ["06"] },
+      { name: "Sensors",   level: 4, since: 2022, note: "IR + ultrasonic, filtered noise.",    usedIn: [] },
     ],
   },
 ];
@@ -91,13 +91,13 @@ const SKILLS = [
 const PROJECTS = [
   {
     n: "01",
-    title: "AI Chess Bot with Human-like Play",
-    blurb: "Deep-learning engine that plays chess like a human — not an engine.",
-    detail: "Trained a CNN on thousands of human PGN games to predict natural, imperfect moves. Built the encoding pipeline, the position-to-label mapping, and an interactive board so you can play against the model. Tuned to feel like a mid-level human, not Stockfish.",
-    stack: ["Python", "PyTorch", "CNNs", "NumPy"],
-    role: "Solo", year: "2025",
-    link: "https://github.com/AnsariUsaid/ML_Chess_project",
-    accent: "warm", placeholder: "AI · Board states → move probabilities",
+    title: "SalesFlow CRM",
+    blurb: "Full-stack CRM for automobile parts sales — GraphQL, role-based access, real payments.",
+    detail: "Apollo Server + Prisma ORM backend with PostgreSQL, fronted by Next.js 16 and React 19. Engineered the full order lifecycle: inbound call → procurement → shipping → follow-up. Four role types (admin, sales, processing, follow-up), Authorize.net payment integration, and Clerk auth — all in a Docker-compose monorepo.",
+    stack: ["Next.js", "GraphQL", "Prisma", "PostgreSQL", "TypeScript"],
+    role: "Full-stack", year: "2025",
+    link: "https://github.com/AnsariUsaid/salesflow-CRM",
+    accent: "neutral", placeholder: "CRM · Order pipeline view",
   },
   {
     n: "02",
@@ -121,33 +121,71 @@ const PROJECTS = [
   },
   {
     n: "04",
-    title: "Healthcare Interoperability System",
-    blurb: "FHIR-based data exchange between hospitals and emergency units.",
-    detail: "Built on FHIR standards for structured, secure cross-institution data flow. Wrote the patient-matching logic that identifies the same person across mismatched databases, plus the SQL/PLSQL plumbing for emergency data access.",
-    stack: ["Python", "JavaScript", "SQL", "PL/SQL"],
-    role: "Backend", year: "2024",
-    link: "https://github.com/Ibrubicks/healthcare-interoperability-system",
-    accent: "neutral", placeholder: "Systems · Patient-record graph",
+    title: "HinglishSarc",
+    blurb: "Sarcasm detection in Hindi-English code-mixed text via emotion trajectory modeling.",
+    detail: "BiLSTM encoder models emotion sequences (joy → frustration shifts) as explicit trajectory features, fused with IndicBERT's [CLS] embedding through a focal-loss classifier (γ=2). Targeting 81%+ F1 on 9,593 Hinglish social media samples — a 5–8% improvement over the mBERT baseline. Trains on a parallel emotion corpus of 25,688 samples.",
+    stack: ["Python", "PyTorch", "IndicBERT", "BiLSTM"],
+    role: "Research", year: "2026",
+    link: "https://github.com/AnsariUsaid/HinglishSarc-Emotion-Trajectory",
+    accent: "warm", placeholder: "NLP · Emotion trajectory graph",
   },
   {
     n: "05",
-    title: "Secure To-Do API",
-    blurb: "JWT-auth task manager with server-rendered Jinja pages.",
-    detail: "Full CRUD with protected endpoints, session logic, and validation. Jinja templates for clean SSR, vanilla JS for interactivity. Small, but every layer is wired by hand — exactly what you want from a learning project.",
-    stack: ["FastAPI", "Jinja", "JWT", "JS"],
-    role: "Solo", year: "2024",
-    link: "https://github.com/AnsariUsaid",
-    accent: "neutral", placeholder: "API · Task list view",
+    title: "ScalSQL",
+    blurb: "Natural language to production SQL, served from AWS SageMaker and Lambda.",
+    detail: "T5-based model on SageMaker converts plain-English queries to optimised SQL, executed against connected RDS instances. Next.js frontend with custom WebGL GLSL shaders and Framer Motion spring animations. Schema auto-detection, query history analytics, and role-based admin panel.",
+    stack: ["React", "Node.js", "AWS SageMaker", "WebGL", "TypeScript"],
+    role: "Full-stack", year: "2026",
+    link: "https://github.com/AnsariUsaid/ScalSQL",
+    accent: "neutral", placeholder: "Cloud · NL→SQL query dashboard",
   },
   {
     n: "06",
+    title: "Jumbled Video Reconstruction",
+    blurb: "Reconstructs randomised video frames into smooth motion using YOLOv8 and 2-opt search.",
+    detail: "YOLOv8x detects person bounding boxes in all 300 frames (1080p / 30fps) at 100% detection rate. Builds a hybrid cost matrix from SSIM similarity and inter-frame motion vectors, then runs a 2-opt local search for the optimal frame ordering. Eight approaches iterated before landing on V8.",
+    stack: ["Python", "YOLOv8", "SSIM", "NumPy"],
+    role: "Solo", year: "2025",
+    link: "https://github.com/AnsariUsaid/jumbled-video-reconstruction",
+    accent: "warm", placeholder: "CV · Frame ordering optimisation",
+  },
+];
+
+const OTHER_PROJECTS = [
+  {
+    title: "Healthcare Interoperability System",
+    blurb: "FHIR-based emergency data exchange with patient-matching across mismatched hospital databases.",
+    stack: ["Python", "JavaScript", "SQL", "PL/SQL"],
+    role: "Contributor", year: "2024",
+    link: "https://github.com/Ibrubicks/healthcare-interoperability-system",
+  },
+  {
+    title: "Modern Data Warehouse",
+    blurb: "Medallion architecture (Bronze → Silver → Gold) on SQL Server with T-SQL ETL pipelines and star schema.",
+    stack: ["T-SQL", "SQL Server", "ETL"],
+    role: "Solo", year: "2025",
+    link: "https://github.com/AnsariUsaid/SQL-DataWareHouse",
+  },
+  {
+    title: "AI Chess Bot",
+    blurb: "CNN trained on human PGN games to produce natural, imperfect moves. Built and tested locally.",
+    stack: ["Python", "PyTorch", "CNNs"],
+    role: "Solo", year: "2025",
+    link: null,
+  },
+  {
     title: "Maze Solver Bot",
-    blurb: "Autonomous bot that maps and solves a maze using IR + ultrasonic.",
-    detail: "Academic robotics project — Arduino-controlled bot with IR and ultrasonic sensors. Implemented wall-following and a flood-fill solver. The kind of project that teaches you what 'noise' actually means.",
+    blurb: "Arduino-controlled robot using IR + ultrasonic sensors with wall-following and flood-fill solving.",
     stack: ["Arduino", "C++", "Sensors"],
     role: "Hardware", year: "2024",
-    link: "#",
-    accent: "warm", placeholder: "Hardware · Bot top-down",
+    link: null,
+  },
+  {
+    title: "Secure To-Do API",
+    blurb: "JWT-authenticated task manager with FastAPI and Jinja server-rendered templates.",
+    stack: ["FastAPI", "JWT", "Jinja"],
+    role: "Solo", year: "2024",
+    link: null,
   },
 ];
 
@@ -803,7 +841,49 @@ function Work() {
           ))}
         </div>
       </div>
+
+      <OtherProjects />
     </Section>
+  );
+}
+
+function OtherProjects() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="others-wrap">
+      <button
+        className={`others-toggle mono ${open ? "is-open" : ""}`}
+        onClick={() => setOpen((v) => !v)}
+        data-cursor="hover"
+      >
+        <span className="others-toggle-rule" />
+        <span className="others-toggle-label">
+          {open ? "− hide other projects" : `+ ${OTHER_PROJECTS.length} more projects`}
+        </span>
+        <span className="others-toggle-rule" />
+      </button>
+
+      {open && (
+        <div className="others-grid">
+          {OTHER_PROJECTS.map((p, i) => (
+            <div key={i} className="ocard">
+              <div className="ocard-head">
+                <span className="mono ocard-role">{p.role} · {p.year}</span>
+                {p.link
+                  ? <a href={p.link} target="_blank" rel="noreferrer" className="ocard-link mono" data-cursor="hover">↗</a>
+                  : <span className="mono ocard-link ocard-local">local</span>
+                }
+              </div>
+              <h4 className="ocard-title">{p.title}</h4>
+              <p className="ocard-blurb">{p.blurb}</p>
+              <ul className="ocard-stack">
+                {p.stack.map((s) => <li key={s} className="mono">{s}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
