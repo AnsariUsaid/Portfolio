@@ -175,26 +175,26 @@ const LANG_DETAIL = [
   { code: "EN", name: "English",  level: "fluent"   },
   { code: "HI", name: "Hindi",    level: "native"   },
   { code: "MR", name: "Marathi",  level: "native"   },
-  { code: "UR", name: "Urdu",     level: "fluent"   },
+  { code: "UR", name: "Urdu",     level: "native",  display: "mother tongue" },
   { code: "TR", name: "Turkish",  level: "learning" },
   { code: "JP", name: "Japanese", level: "learning" },
 ];
 
 const NOW_PLAYING = [
   {
-    k: "Building", title: "AI Interview Platform", meta: "Sprint 04 · v0.6.2",
-    status: "active", viz: "progress", vizData: { value: 68, total: 100, label: "complete" },
+    k: "Building", title: "Quant-Aware Replay", meta: "Ideation · pre-sprint",
+    status: "active", viz: "progress", vizData: { value: 8, total: 100, label: "ideation" },
   },
   {
-    k: "Reading", title: "Designing ML Systems", meta: "Chip Huyen · Ch. 6 / 10",
-    status: "pinned", viz: "pages", vizData: { current: 6, total: 10 },
+    k: "Reading", title: "To Engineer is Human", meta: "Henry Petroski · Ch. 1 / 14",
+    status: "pinned", viz: "pages", vizData: { current: 1, total: 14 },
   },
   {
-    k: "Learning", title: "Distributed Training", meta: "+ Turkish · + how to nap",
-    status: "looping", viz: "streak", vizData: { days: 23, week: [1,1,1,0,1,1,1] },
+    k: "Learning", title: "QLoRA · PEFT · Quant", meta: "+ Turkish · + how to nap · + DSA",
+    status: "looping", viz: null, vizData: null,
   },
   {
-    k: "Obsessed", title: "LLM evaluation harnesses", meta: "Art > science, allegedly",
+    k: "Obsessed", title: "Eval harness engineering", meta: "Art > science, allegedly",
     status: "spiking", viz: "spark", vizData: { points: [2, 5, 3, 7, 4, 9, 6, 11, 8, 14, 12, 18, 15, 22] },
   },
 ];
@@ -654,7 +654,7 @@ function About() {
                 <li key={l.code} className={`lang-pill is-${l.level}`} data-cursor="hover">
                   <span className="mono lang-code">{l.code}</span>
                   <span className="lang-name serif italic">{l.name}</span>
-                  <span className="mono lang-level">{l.level}</span>
+                  <span className="mono lang-level">{l.display || l.level}</span>
                 </li>
               ))}
             </ul>
