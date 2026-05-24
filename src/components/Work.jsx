@@ -116,20 +116,25 @@ export function Work() {
   useEffect(() => {
     const sect = document.getElementById("work");
     if (!sect) return;
-    const cards = sect.querySelectorAll(".pcard");
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && e.intersectionRatio > 0.4) {
-            const idx = Number(e.target.style.getPropertyValue("--i"));
-            setActive(idx);
-          }
-        });
-      },
-      { rootMargin: "-30% 0px -50% 0px", threshold: [0.4, 0.6, 0.8] }
-    );
-    cards.forEach((c) => obs.observe(c));
-    return () => obs.disconnect();
+
+    // Cards are position:sticky — once stacked they all remain in the viewport
+    // simultaneously, making IntersectionObserver unreliable.
+    // Instead: the card "on top" is the highest-indexed one whose rect.top has
+    // reached (or passed) its own sticky threshold.
+    const cards = [...sect.querySelectorAll(".pcard")];
+
+    const onScroll = () => {
+      let newActive = 0;
+      cards.forEach((card, i) => {
+        const threshold = parseFloat(card.style.getPropertyValue("--top-offset")) || 90 + i * 14;
+        if (card.getBoundingClientRect().top <= threshold + 1) newActive = i;
+      });
+      setActive(newActive);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // run once on mount
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
