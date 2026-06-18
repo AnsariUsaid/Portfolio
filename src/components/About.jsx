@@ -159,7 +159,7 @@ export function About() {
             </div>
             <ul className="vcard-meta">
               <li><span className="mono vc-k">Role</span><span className="vc-v">3rd-yr B.Tech, CSE</span></li>
-              <li><span className="mono vc-k">School</span><span className="vc-v">VIT Vellore · <i className="serif">CGPA 8.72</i></span></li>
+              <li><span className="mono vc-k">School</span><span className="vc-v">VIT Vellore · <i className="serif">CGPA 8.86</i></span></li>
               <li><span className="mono vc-k">Based</span><span className="vc-v">Tamil Nadu, India</span></li>
               <li><span className="mono vc-k">Born</span><span className="vc-v">2005</span></li>
               <li>

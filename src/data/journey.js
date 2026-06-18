@@ -10,7 +10,7 @@ export const JOURNEY = [
     kind: "stop", side: "right", km: "KM 042", featured: true,
     when: "2023 — 2027", title: "Vellore Institute of Technology",
     sub: "B.Tech · Computer Science & Engineering",
-    notes: ["CGPA 8.72 / 10", "DSA · OOP · System Design · Computer Architecture", "Projects: ALU Design, Maze Solver Bot, this portfolio"],
+    notes: ["CGPA 8.86 / 10", "DSA · OOP · System Design · Computer Architecture", "Projects: ALU Design, Maze Solver Bot, this portfolio"],
   },
   { kind: "sign", side: "left",  km: "KM 058", year: "2025", title: "OCI · Generative AI Professional", sub: "Oracle — Certification" },
   { kind: "sign", side: "right", km: "KM 061", year: "2025", title: "OCI · AI Foundations Associate",   sub: "Oracle — Certification" },
