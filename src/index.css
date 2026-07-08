@@ -1203,11 +1203,17 @@ img, svg { display: block; }
   .prail-pip { grid-template-columns: auto auto 1fr; padding: 10px 12px; border-left: 0; border-top: 2px solid transparent; }
   .prail-pip.is-active { border-left: 0; border-top-color: var(--accent); }
   .prail-pip.is-active::before { display: none; }
-  .pcard-grid { grid-template-columns: 1fr; gap: 24px; }
+  .pcard-grid, .pcard-right .pcard-grid { grid-template-columns: 1fr; gap: 24px; }
   .pcard-right .pcard-visual { order: 0; }
   .pcard-frame { padding: 20px; min-height: 0; }
   .pdeck { gap: 32px; padding-bottom: 20vh; }
   .pcard { position: relative; top: 0; transform: none; }
+}
+@media (max-width: 520px) {
+  .work-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .prail-track { grid-template-columns: repeat(2, 1fr); }
+  .pcard-bignum { font-size: 180px; right: -10px; bottom: -40px; }
+  .pcard-title { font-size: clamp(24px, 7vw, 32px); }
 }
 
 .h2 {

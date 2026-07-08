@@ -98,8 +98,8 @@ export function Hero({ onJump }) {
 
         <div className="hero-stats">
           <Stat k="CGPA"     v="8.86" suffix="/ 10"    viz="arc"     vizProps={{ ratio: 0.886 }}        tilt={-1.2} />
-          <Stat k="Year"     v="3rd"  suffix="of 4"    viz="dots"    vizProps={{ total: 4, filled: 3 }} tilt={0.8}  />
-          <Stat k="Projects" v="06"   suffix="shipped" viz="squares" vizProps={{ total: 6, filled: 6 }} tilt={-0.6} />
+          <Stat k="Year"     v="4th"  suffix="of 4"    viz="dots"    vizProps={{ total: 4, filled: 4 }} tilt={0.8}  />
+          <Stat k="Projects" v="07"   suffix="shipped" viz="squares" vizProps={{ total: 7, filled: 7 }} tilt={-0.6} />
           <Stat k="Certs"    v="02"   suffix="Oracle"  viz="seal"                                        tilt={1.4}  />
         </div>
       </div>

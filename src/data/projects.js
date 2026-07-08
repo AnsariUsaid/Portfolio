@@ -11,6 +11,16 @@ export const PROJECTS = [
   },
   {
     n: "02",
+    title: "Ascend",
+    blurb: "Android app that replaces cold-turkey screen-time blocks with a rising cognitive-friction ladder.",
+    detail: "When you hit a daily limit on a monitored app, Ascend doesn't lock you out — it shows you a question (math / trivia / logic / typing) to earn a short grace period, getting harder each round until the effort outweighs the urge to keep scrolling. React Native (Expo, TypeScript) app with a Kotlin native module for real on-device usage tracking via UsageStatsManager, a background foreground service that auto-triggers the friction overlay, and a Zustand-driven ladder engine. v1 is fully on-device and account-free — no sign-in, no servers, nothing leaves the phone. Signed release APK runs standalone on a real device.",
+    stack: ["React Native", "Expo", "TypeScript", "Kotlin", "Zustand"],
+    role: "Solo", year: "2026",
+    link: "https://github.com/AnsariUsaid/Ascend",
+    accent: "warm", placeholder: "Android · Friction ladder overlay",
+  },
+  {
+    n: "03",
     title: "AI Interview Application",
     blurb: "Full-stack platform that parses resumes, runs LLM interviews, and scores you.",
     detail: "End-to-end AI interview platform: resume parsing, dynamic question generation, response evaluation, and automated feedback. Redux Toolkit for state, FastAPI for the backend, shadcn + Tailwind for the UI. Persistent sessions, modular scoring, LLM-powered everything.",
@@ -20,7 +30,7 @@ export const PROJECTS = [
     accent: "neutral", placeholder: "Product · Live interview UI",
   },
   {
-    n: "03",
+    n: "04",
     title: "Educational Assignment Portal",
     blurb: "Multi-role academic platform with cloud-backed file storage.",
     detail: "Students upload assignments, teachers organise and download. AWS S3 for scalable file storage, FastAPI for auth/JWT, React + TypeScript dashboards. Designed around real academic workflows — bulk download, deadline tracking, role-based permissions.",
@@ -30,7 +40,7 @@ export const PROJECTS = [
     accent: "warm", placeholder: "Dashboard · Submissions table",
   },
   {
-    n: "04",
+    n: "05",
     title: "HinglishSarc",
     blurb: "Sarcasm detection in Hindi-English code-mixed text via emotion trajectory modeling.",
     detail: "BiLSTM encoder models emotion sequences (joy → frustration shifts) as explicit trajectory features, fused with IndicBERT's [CLS] embedding through a focal-loss classifier (γ=2). Targeting 81%+ F1 on 9,593 Hinglish social media samples — a 5–8% improvement over the mBERT baseline. Trains on a parallel emotion corpus of 25,688 samples.",
@@ -40,7 +50,7 @@ export const PROJECTS = [
     accent: "warm", placeholder: "NLP · Emotion trajectory graph",
   },
   {
-    n: "05",
+    n: "06",
     title: "ScalSQL",
     blurb: "Natural language to production SQL, served from AWS SageMaker and Lambda.",
     detail: "T5-based model on SageMaker converts plain-English queries to optimised SQL, executed against connected RDS instances. Next.js frontend with custom WebGL GLSL shaders and Framer Motion spring animations. Schema auto-detection, query history analytics, and role-based admin panel.",
@@ -50,7 +60,7 @@ export const PROJECTS = [
     accent: "neutral", placeholder: "Cloud · NL→SQL query dashboard",
   },
   {
-    n: "06",
+    n: "07",
     title: "Jumbled Video Reconstruction",
     blurb: "Reconstructs randomised video frames into smooth motion using YOLOv8 and 2-opt search.",
     detail: "YOLOv8x detects person bounding boxes in all 300 frames (1080p / 30fps) at 100% detection rate. Builds a hybrid cost matrix from SSIM similarity and inter-frame motion vectors, then runs a 2-opt local search for the optimal frame ordering. Eight approaches iterated before landing on V8.",

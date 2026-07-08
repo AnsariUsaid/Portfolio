@@ -141,7 +141,7 @@ export function Work() {
     <Section id="work" n="02" label="Selected Work">
       <div className="work-head">
         <h2 className="h2">
-          Six projects, one through-line:{" "}
+          Seven projects, one through-line:{" "}
           <span className="serif italic">ship the thing.</span>
         </h2>
         <span className="mono work-count">

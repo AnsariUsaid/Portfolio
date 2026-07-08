@@ -2,9 +2,9 @@ export const PROFILE = {
   name: "Ansari Usaid Anzer",
   shortName: "Ansari U. Anzer",
   role: "Computer Science Engineer",
-  bio: "3rd-year B.Tech CSE at VIT Vellore. I build at the intersection of artificial intelligence, full-stack systems, and cloud infrastructure — turning research-grade ideas into things people actually use.",
+  bio: "Final-year B.Tech CSE at VIT Vellore. I build at the intersection of artificial intelligence, full-stack systems, and cloud infrastructure — turning research-grade ideas into things people actually use.",
   longBio: [
-    "I'm an aspiring IT professional and 3rd-year B.Tech Computer Science student at VIT Vellore (CGPA 8.86), drawn to the messy intersection where machine learning meets product. I like problems that need both a model and a UI.",
+    "I'm an aspiring IT professional and final-year B.Tech Computer Science student at VIT Vellore (CGPA 8.86), drawn to the messy intersection where machine learning meets product. I like problems that need both a model and a UI.",
     "My toolbelt spans deep learning with TensorFlow & PyTorch, full-stack work with React and FastAPI, and cloud deployments on AWS. I'm Oracle-certified in Generative AI and AI Foundations, and I read papers the way other people read novels.",
     "Currently looking for internships and collaborations in AI/ML, full-stack engineering, and cloud — particularly anything that has to ship to real users."
   ],
