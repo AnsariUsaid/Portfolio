@@ -1160,10 +1160,14 @@ img, svg { display: block; }
   color: var(--fg);
 }
 
+.pcard-ctas {
+  display: flex; flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
 .pcard-cta {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 12px 18px;
-  margin-top: 8px;
   background: var(--accent);
   color: var(--bg);
   border-radius: 2px;
@@ -1172,8 +1176,7 @@ img, svg { display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  align-self: flex-start;
-  transition: box-shadow .25s, transform .2s;
+  transition: box-shadow .25s, transform .2s, background .2s, color .2s;
   cursor: none;
 }
 .pcard-cta:hover {
@@ -1182,6 +1185,16 @@ img, svg { display: block; }
 }
 .pcard-cta-arrow { transition: transform .2s; }
 .pcard-cta:hover .pcard-cta-arrow { transform: translate(3px, -3px); }
+
+.pcard-cta-ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--line-2);
+}
+.pcard-cta-ghost:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+}
 
 .pcard-corner {
   position: absolute;

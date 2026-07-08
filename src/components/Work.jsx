@@ -54,10 +54,18 @@ function ProjectCard({ p, i, total }) {
             <ul className="pcard-stack">
               {p.stack.map((s) => <li key={s} className="mono">{s}</li>)}
             </ul>
-            <a className="pcard-cta" href={p.link} target="_blank" rel="noreferrer" data-cursor="hover">
-              <span>Open repo on GitHub</span>
-              <span className="pcard-cta-arrow">↗</span>
-            </a>
+            <div className="pcard-ctas">
+              <a className="pcard-cta" href={p.link} target="_blank" rel="noreferrer" data-cursor="hover">
+                <span>Open repo on GitHub</span>
+                <span className="pcard-cta-arrow">↗</span>
+              </a>
+              {p.siteLink && (
+                <a className="pcard-cta pcard-cta-ghost" href={p.siteLink} target="_blank" rel="noreferrer" data-cursor="hover">
+                  <span>Visit site</span>
+                  <span className="pcard-cta-arrow">↗</span>
+                </a>
+              )}
+            </div>
           </div>
         </div>
 

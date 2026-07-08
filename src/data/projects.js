@@ -13,10 +13,11 @@ export const PROJECTS = [
     n: "02",
     title: "Ascend",
     blurb: "Android app that replaces cold-turkey screen-time blocks with a rising cognitive-friction ladder.",
-    detail: "When you hit a daily limit on a monitored app, Ascend doesn't lock you out — it shows you a question (math / trivia / logic / typing) to earn a short grace period, getting harder each round until the effort outweighs the urge to keep scrolling. React Native (Expo, TypeScript) app with a Kotlin native module for real on-device usage tracking via UsageStatsManager, a background foreground service that auto-triggers the friction overlay, and a Zustand-driven ladder engine. v1 is fully on-device and account-free — no sign-in, no servers, nothing leaves the phone. Signed release APK runs standalone on a real device.",
+    detail: "When you hit a daily limit on a monitored app, Ascend doesn't lock you out — it shows you a question (math / trivia / logic / typing) to earn a short grace period, getting harder each round until the effort outweighs the urge to keep scrolling. React Native (Expo, TypeScript) app with a Kotlin native module for real on-device usage tracking via UsageStatsManager, a background foreground service that auto-triggers the friction overlay, and a Zustand-driven ladder engine. v1 is fully on-device and account-free — no sign-in, no servers, nothing leaves the phone. Signed release build running standalone on a real device, currently in review for launch on the Google Play Store.",
     stack: ["React Native", "Expo", "TypeScript", "Kotlin", "Zustand"],
     role: "Solo", year: "2026",
     link: "https://github.com/AnsariUsaid/Ascend",
+    siteLink: "https://ascend.ansariusaid.me",
     accent: "warm", placeholder: "Android · Friction ladder overlay",
   },
   {
